@@ -1,0 +1,46 @@
+09/11/2021 :
+
+- Ajout de la possibilté de diriger le serpent, avec blocage des pierres : fonctionnel.
+Cependant, il s'affiche une seconde fois dans la direction effectuée
+auparavant. Avance donc toujous dans la même direction si le joueur
+qui le contrôle ne la change pas.
+
+- Le serpent se contrôle avec les touches 8, 2, 4 et 6, pour aller respectivement 
+en haut, en bas, à gauche et à droite. Rajout dans les elifs. (vers ligne 138).
+Rajout des compute, bound et collide.
+
+- Création de "serveur.py" et "client.py"
+
+- Deux fichiers desquels on va appeller leur fonction respectives
+- "serveur.py" :
+	- 1 liste 
+	- def connection() : socket serveur en local sur le port 7777
+	- ajout de la socket à la liste, retour
+- "client.py" :
+	- def découverte de clients (reprise du TP4) en paramètre la liste et la socket
+	d'écoute du serveur
+	- affichage du client connecté
+	- ajout de la socket à la liste
+
+- Dans eden :
+	- imports des fonctions avec le nom des fichiers
+	- retour des valeur de connection()
+	- dans le while True:
+		- découverte des clients connectés avec discoverClients(l, s),
+		l et s étant les deux valeurs retournés par "serveur.py".
+		
+	- Afin de tester les sockets :
+		- Lancement de eden
+		- Connexion au serveur : "nc localhost 7777"
+		- Connexion réusie, la carte du jeu ne s'affiche pas.
+		- Si clicks ou touches pressées dans la fenêtre : plantage du programme.
+		
+		Solution étrange trouvée :
+		- On relance le jeu
+		- On reconnecte un client netcat
+		- On se déconnecte, puis on se reconnecte immédiatement
+		- La fenêtre s'affiche, on peut maintenant jouer. (tests effectués en local).
+		- On peut déconnecter le client : on peut toujours jouer au jeu.
+	
+	- Erreur : plantage en cas de connexion d'un deuxième client
+	- (Pas de passage dans la fonction discoverClients)
