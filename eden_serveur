@@ -29,7 +29,7 @@ import pygame
 import socket
 # Imports des autres fichiers
 import serveur
-import client
+#import client
 
 liste, mySocket = serveur.socketServeur()
 
